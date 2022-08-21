@@ -1,0 +1,25 @@
+<div style="position: relative; color: white;">
+    <table class="table bg-light" style=" color: black; border-radius: 5px;">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Status</th>
+                <th scope="col">Poster Url</th>
+                <th scope="col">Video Url</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let content of contents ">
+            <tr>
+                <th scope="row">{{content.id}}</th>
+                <td>{{content.contentName}}</td>
+                <td>{{content.contentStatus }}</td>
+                <td>{{content.contentPosterUrl | shorten: 50}}...</td>
+                <td>{{content.contentVideoUrl | shorten: 50}}...</td>
+                <td><button class="btn btn-success">Edit</button></td>
+                <td><a class="btn btn-danger" (click)="onDeleteClick(content.id)">Delete</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <app-content-edit></app-content-edit>
+</div>

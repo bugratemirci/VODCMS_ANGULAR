@@ -4,6 +4,7 @@ import { Content } from './content';
 import { ContentsService } from '../services/contents.service';
 import { Store } from '@ngrx/store';
 import { User } from '../login/user';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',
@@ -18,14 +19,12 @@ export class ContentComponent implements OnInit {
 
   ngOnInit(): void {
     this.contentService.getProducts().subscribe(data => {
-      data.map(data => {
-        if (data.contentStatus === "Published")
-          this.contents.push(data)
-      })
+      this.contents = data;
     })
   }
   goToDetail(content: Content) {
     this.alertifyService.success(content.contentName);
 
   }
+
 }

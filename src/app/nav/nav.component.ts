@@ -25,7 +25,7 @@ export class NavComponent implements OnInit {
     this.router.navigateByUrl('/')
   }
   btnOpenManagementPanel() {
-    console.log("Yönetim paneli");
+    this.router.navigateByUrl('dashboard')
   }
 
 }

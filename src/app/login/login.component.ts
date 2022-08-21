@@ -25,16 +25,19 @@ export class LoginComponent implements OnInit {
     this.userService.getUser().subscribe(data => {
       this.user = data;
     })
+    console.log(localStorage.getItem('user'));
   }
 
   loginButtonOnClick(username: string, password: string) {
-    console.log({ username, password });
+
+
 
     this.userService.login(username, password).subscribe(data => {
       this.userService.setUser(data)
       if (data) {
         this.router.navigateByUrl('/contents');
         this.alertify.success("Giriş başarılı");
+        localStorage.setItem('user', data);
       }
       else {
         this.alertify.error("Giriş başarısız");

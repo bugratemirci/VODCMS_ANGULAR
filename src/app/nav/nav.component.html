@@ -1,9 +1,8 @@
-<nav class="navbar navbar-light bg-dark" style="padding: 1.5%;">
-    <a class="navbar-brand" routerLink="/contents" style="color: white;">VODCMS</a>
-    <span class="navbar-brand" style="color: white;">Hoş Geldin <strong>{{user.username}}</strong></span>
+<nav class="navbar navbar-light bg-dark" style="padding: 1.3%; ">
+    <a class="navbar-brand" routerLink="/contents" style="color: white;">Content Management System</a>
     <form class="form-inline">
-        <span *ngIf="user.isAdmin" class="my-2 my-sm-0 btn btn-outline-light" style="margin-right: .4rem;"
-            (click)="btnOpenManagementPanel()">Yönetim Paneli</span>
-        <a class="my-2 my-sm-0 btn btn-outline-light"  (click)="btnLogOutOnClick()">Çıkış Yap</a>
+        <span class="my-2 my-sm-0 btn btn-light" style="margin-right: .4rem; "
+            (click)="btnOpenManagementPanel()">Management Panel</span>
+        <a class="my-2 my-sm-0 btn btn-outline-light" (click)="btnLogOutOnClick()">Logout</a>
     </form>
 </nav>
