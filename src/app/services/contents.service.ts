@@ -15,7 +15,7 @@ export class ContentsService {
 
   getProducts(): Observable<Content[]> {
     return this.http.get<Content[]>(apiConstants.apiUrl + apiConstants.apiPrefix + "contents/").pipe(
-      tap(data => console.log(JSON.stringify(data))),
+      tap(),
       catchError(this.handleError)
     )
   }

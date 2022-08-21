@@ -4,4 +4,5 @@ export class Content {
     contentStatus: string;
     contentPosterUrl: string;
     contentVideoUrl: string;
+    contentDescription: string;
 }
