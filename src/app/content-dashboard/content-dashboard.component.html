@@ -1,4 +1,4 @@
-<div style="position: relative; color: white;">
+<div style="color: white;">
     <table class="table bg-light" style=" color: black; border-radius: 5px; text-align: right">
         <thead>
             <tr>
@@ -14,8 +14,8 @@
                 <th scope="row">{{content.id}}</th>
                 <td>{{content.contentName}}</td>
                 <td>{{content.contentStatus }}</td>
-                <td>{{content.contentPosterUrl | shorten: 35}}...</td>
-                <td>{{content.contentVideoUrl | shorten: 35}}...</td>
+                <td>{{content.contentPosterUrl | shorten: 25}}...</td>
+                <td>{{content.contentVideoUrl | shorten: 25}}...</td>
                 <td>
                     <button class="btn btn-danger" style="height: 34px; margin-right: 2%;" (click)="onEditClick(content)">
                         <mat-icon style="font-size: 20px;" fontIcon="edit"></mat-icon>

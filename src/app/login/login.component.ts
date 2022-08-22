@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 export class LoginComponent implements OnInit {
 
   constructor(private userService: UsersService, private alertify: AlertifyService, private router: Router) { }
+
   users: User[] = [];
 
   username: string;
@@ -33,11 +34,11 @@ export class LoginComponent implements OnInit {
       this.userService.setUser(data)
       if (data) {
         this.router.navigateByUrl('/contents');
-        this.alertify.success("Giriş başarılı");
+        this.alertify.success("Login success");
 
       }
       else {
-        this.alertify.error("Giriş başarısız");
+        this.alertify.error("Login failed");
       }
     })
 

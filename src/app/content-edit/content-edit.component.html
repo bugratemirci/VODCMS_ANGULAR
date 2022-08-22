@@ -1,6 +1,8 @@
 <form class="bg-light" style="color: black; padding: 1%; border-radius: 5px;">
+
     <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Content Name</label>
+        <label for="exampleInputEmail1" class="form-label">Content Name <span *ngIf="currentContent.id > -1"
+                matBadge="{{currentContent.id}}" matBadgeOverlap="false"></span></label>
         <input type="text" class="form-control" [(ngModel)]="currentContent.contentName" name="contentName">
     </div>
     <div class="mb-3">
@@ -26,16 +28,16 @@
         <input type="text" class="form-control" [(ngModel)]="currentContent.contentDescription"
             name="contentDescription">
     </div>
-    <mat-form-field appearance="fill" style="width: 100%; margin-bottom: 5%;">
+    <mat-form-field appearance="fill" style="width: 100%;" class="mb-5">
         <mat-label>Licences</mat-label>
         <mat-select [formControl]="selectedLicences" multiple>
             <mat-option *ngFor="let licence of licences" [value]="licence.id">{{licence.licenceName}}
             </mat-option>
         </mat-select>
     </mat-form-field>
+    <div style="display: flex; justify-content:flex-end; align-items:flex-end;">
+        <button type="submit" class="btn btn-danger" style="margin-right: 1%;" (click)="saveContent()">Save DB</button>
+        <button type="submit" class="btn btn-danger" (click)="resetContent()">Reset Fields</button>
+    </div>
 
-    <button type="submit" class="btn btn-danger" style="position: absolute; right: 2%; bottom: 3%"
-        (click)="addContent()">Save DB</button>
-    <button type="submit" class="btn btn-danger" style="position: absolute; right:9%; bottom: 3%"
-        (click)="resetContent()">Reset Fields</button>
 </form>

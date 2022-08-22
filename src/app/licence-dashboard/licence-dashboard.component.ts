@@ -10,21 +10,21 @@ import { LicencesService } from '../services/licences.service';
 export class LicenceDashboardComponent implements OnInit {
 
   constructor(private licenceService: LicencesService) { }
+
   licences: Licence[]
   ngOnInit(): void {
     this.licenceService.getAllLicence().subscribe(data => {
       this.licences = data
-      console.log(data[0]);
-
     })
   }
   onDeleteClick(id: number) {
-
+    this.licenceService.deleteLicence(id).subscribe(data => {
+      window.location.reload();
+    });
   }
   onEditClick(licence: Licence) {
     this.licenceService.setCurrentLicence(licence);
     this.licenceService.getCurrentLicence().subscribe(data => {
-      console.log(data);
     })
 
   }

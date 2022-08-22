@@ -27,6 +27,21 @@ export class LicencesService {
       catchError(this.handleError)
     )
   }
+  updateLicence(obj: any) {
+    return this.http.post(apiConstants.apiUrl + apiConstants.apiPrefix + "licences/update", { licenceName: obj.licenceName, startTime: obj.startTime, endTime: obj.endTime, id: obj.id }).pipe(
+      tap(),
+      catchError(this.handleError)
+    )
+  }
+  resetLicence() {
+    this.store.dispatch(resetLicence());
+  }
+  deleteLicence(id: number) {
+    return this.http.post(apiConstants.apiUrl + apiConstants.apiPrefix + "licences/delete", { id }).pipe(
+      tap(data => console.log(data)),
+      catchError(this.handleError)
+    )
+  }
 
   getCurrentLicence(): Observable<Licence> {
     return this.store.select('licence').pipe(

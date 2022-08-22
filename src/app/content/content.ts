@@ -1,3 +1,5 @@
+import { Licence } from "../models/licence";
+
 export class Content {
     id: number;
     contentName: string;
@@ -5,4 +7,5 @@ export class Content {
     contentPosterUrl: string;
     contentVideoUrl: string;
     contentDescription: string;
+    contentLicences: Licence[]
 }

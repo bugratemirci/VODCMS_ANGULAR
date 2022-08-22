@@ -1,5 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { Content } from "src/app/content/content";
+import { Licence } from "src/app/models/licence";
 import { setContent, resetContent } from "./content.actions";
 
 export interface IState {
@@ -13,7 +14,8 @@ export const initialContent: IState = {
         id: -1,
         contentPosterUrl: "",
         contentVideoUrl: "",
-        contentDescription: ""
+        contentDescription: "",
+        licences: []
     },
 }
 
@@ -26,7 +28,15 @@ export const contentReducer = createReducer(initialContent,
     }),
     on(resetContent, (state, content) => {
         const newState: IState = {
-            content: new Content,
+            content: {
+                contentName: "",
+                contentStatus: "",
+                id: -1,
+                contentPosterUrl: "",
+                contentVideoUrl: "",
+                contentDescription: "",
+                licences: []
+            },
         }
         return newState.content;
     }),

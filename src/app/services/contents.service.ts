@@ -7,6 +7,7 @@ import { tap, catchError } from 'rxjs/operators';
 import { AlertifyService } from '../services/alertify.service';
 import { Store, select } from '@ngrx/store';
 import { resetContent, setContent } from '../ngrx/contentSlice/content.actions';
+import { ContentDTO } from '../models/contentsDTO';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,8 +15,14 @@ export class ContentsService {
 
   constructor(private http: HttpClient, private alertify: AlertifyService, private store: Store<{ content: Content }>) { }
 
-  getProducts(): Observable<Content[]> {
+  getContents(): Observable<Content[]> {
     return this.http.get<Content[]>(apiConstants.apiUrl + apiConstants.apiPrefix + "contents/").pipe(
+      tap(),
+      catchError(this.handleError)
+    )
+  }
+  getContentDTOS(): Observable<ContentDTO[]> {
+    return this.http.get<ContentDTO[]>(apiConstants.apiUrl + apiConstants.apiPrefix + "contents/contentsDTO").pipe(
       tap(),
       catchError(this.handleError)
     )
@@ -24,6 +31,7 @@ export class ContentsService {
     return this.store.select('content');
   }
   setCurrentContent(content: Content) {
+    
     this.store.dispatch(setContent(content));
   }
 

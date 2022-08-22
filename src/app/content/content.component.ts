@@ -18,7 +18,7 @@ export class ContentComponent implements OnInit {
   contents: Content[] = [];
 
   ngOnInit(): void {
-    this.contentService.getProducts().subscribe(data => {
+    this.contentService.getContents().subscribe(data => {
       this.contents = data;
     })
   }

@@ -25,7 +25,12 @@ export const licenceReducer = createReducer(initialLicence,
     }),
     on(resetLicence, (state, licence) => {
         const newState: IState = {
-            licence: new Licence,
+            licence: {
+                id: -1,
+                licenceName: "",
+                endTime: Date,
+                startTime: Date,
+            },
         }
         return newState.licence
     }),

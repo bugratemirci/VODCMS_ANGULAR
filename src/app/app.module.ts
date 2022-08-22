@@ -28,7 +28,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { contentReducer } from './ngrx/contentSlice/content.reducer';
 import { licenceReducer } from './ngrx/licenceSlice/licence.reducer';
-
+import { MatBadgeModule } from '@angular/material/badge';
 
 @NgModule({
   declarations: [
@@ -54,6 +54,7 @@ import { licenceReducer } from './ngrx/licenceSlice/licence.reducer';
     BrowserAnimationsModule,
     MatSliderModule,
     MatSelectModule,
+    MatBadgeModule,
     ReactiveFormsModule,
     MatExpansionModule,
     MatDatepickerModule,

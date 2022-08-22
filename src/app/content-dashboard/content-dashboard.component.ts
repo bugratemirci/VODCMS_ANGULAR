@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Content } from '../content/content';
+import { Licence } from '../models/licence';
 import { ContentsService } from '../services/contents.service';
 @Component({
   selector: 'app-content-dashboard',
@@ -9,23 +10,33 @@ import { ContentsService } from '../services/contents.service';
 export class ContentDashboardComponent implements OnInit {
 
   constructor(private contentService: ContentsService) { }
-  contents: Content[]
+  contents: Content[] = []
   ngOnInit(): void {
-    this.contentService.getProducts().subscribe(data => {
-      this.contents = data
+
+    this.contentService.getContentDTOS().subscribe(data => {
+      data.map(item => {
+        let _content = {
+          ...item.content,
+          "contentLicences": item.licences
+        }
+        this.contents.push(_content);
+      })
+
     })
+
   }
 
   onDeleteClick(id: number) {
     this.contentService.deleteContent(id).subscribe(data => {
-      console.log("Silme işlemi başarılı.");
+      window.location.reload();
     })
   }
   onEditClick(content: Content) {
 
+
     this.contentService.setCurrentContent(content);
     this.contentService.getCurrentContent().subscribe(data => {
-      console.log(data);
+
     })
   }
 
