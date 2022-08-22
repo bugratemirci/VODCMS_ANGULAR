@@ -10,7 +10,7 @@ export const initialUserState: IState = {
     user: {
         username: "",
         password: "",
-        id: 0,
+        id: -1,
         email: "",
         isAdmin: false
     }
@@ -19,10 +19,6 @@ export const initialUserState: IState = {
 export const userReducer = createReducer(initialUserState,
     on(setUser, (state, user) => {
         const { username, password, id, email, isAdmin } = user;
-        console.log(username);
-        console.log(password);
-
-
         const newState: IState = {
             user: {
                 username,

@@ -1,3 +1,32 @@
-<div style="position: relative;">
-    <p style="color:white">licence-dashboard works!</p>
+<div style=" color: white;">
+    <table class="table bg-light" style=" color: black; border-radius: 5px; text-align: right">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Start Time</th>
+                <th scope="col">End Time</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let licence of licences ">
+            <tr>
+                <th scope="row">{{licence.id}}</th>
+                <td>{{licence.licenceName}}</td>
+                <td>{{licence.startTime}}</td>
+                <td>{{licence.endTime}}</td>
+
+                <td>
+                    <button class="btn btn-danger" style="height: 34px; margin-right: 1%;"
+                        (click)="onEditClick(licence)">
+                        <mat-icon style="font-size: 20px;" fontIcon="edit"></mat-icon>
+                    </button>
+                    <a class="btn btn-dark" style="height: 34px;" (click)="onDeleteClick(licence.id)">
+                        <mat-icon style="font-size: 20px;" fontIcon="delete"></mat-icon>
+                    </a>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+    <app-licence-edit></app-licence-edit>
 </div>

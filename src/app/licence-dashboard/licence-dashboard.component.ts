@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Licence } from '../models/licence';
+import { LicencesService } from '../services/licences.service';
 
 @Component({
   selector: 'app-licence-dashboard',
@@ -7,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LicenceDashboardComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private licenceService: LicencesService) { }
+  licences: Licence[]
   ngOnInit(): void {
+    this.licenceService.getAllLicence().subscribe(data => {
+      this.licences = data
+      console.log(data[0]);
+
+    })
+  }
+  onDeleteClick(id: number) {
+
+  }
+  onEditClick(licence: Licence) {
+    this.licenceService.setCurrentLicence(licence);
+    this.licenceService.getCurrentLicence().subscribe(data => {
+      console.log(data);
+    })
+
   }
 
 }

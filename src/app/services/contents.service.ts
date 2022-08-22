@@ -5,19 +5,30 @@ import apiConstants from '../constants/api';
 import { Observable, throwError } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { AlertifyService } from '../services/alertify.service';
-
+import { Store, select } from '@ngrx/store';
+import { resetContent, setContent } from '../ngrx/contentSlice/content.actions';
 @Injectable({
   providedIn: 'root'
 })
 export class ContentsService {
 
-  constructor(private http: HttpClient, private alertify: AlertifyService) { }
+  constructor(private http: HttpClient, private alertify: AlertifyService, private store: Store<{ content: Content }>) { }
 
   getProducts(): Observable<Content[]> {
     return this.http.get<Content[]>(apiConstants.apiUrl + apiConstants.apiPrefix + "contents/").pipe(
       tap(),
       catchError(this.handleError)
     )
+  }
+  getCurrentContent(): Observable<Content> {
+    return this.store.select('content');
+  }
+  setCurrentContent(content: Content) {
+    this.store.dispatch(setContent(content));
+  }
+
+  resetCurrentContent() {
+    this.store.dispatch(resetContent())
   }
   deleteContent(id: number) {
     return this.http.post(apiConstants.apiUrl + apiConstants.apiPrefix + "contents/delete", { id }).pipe(
@@ -27,6 +38,12 @@ export class ContentsService {
   }
   addToDB(content: any, licence: any) {
     return this.http.post(apiConstants.apiUrl + apiConstants.apiPrefix + "contents/add", { content: content, licence: licence }).pipe(
+      tap(),
+      catchError(this.handleError)
+    )
+  }
+  updateDB(content: any, licence: any) {
+    return this.http.post(apiConstants.apiUrl + apiConstants.apiPrefix + "contents/update", { content: content, licence: licence }).pipe(
       tap(),
       catchError(this.handleError)
     )

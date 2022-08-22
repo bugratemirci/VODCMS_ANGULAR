@@ -14,12 +14,21 @@ import { userReducer } from './ngrx/userSlice/user.reducer';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ContentDashboardComponent } from './content-dashboard/content-dashboard.component';
 import { LicenceDashboardComponent } from './licence-dashboard/licence-dashboard.component';
-import { PlatformDashboardComponent } from './platform-dashboard/platform-dashboard.component';
 import { NgPipesModule } from 'ngx-pipes';
 import { ContentEditComponent } from './content-edit/content-edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { LicenceEditComponent } from './licence-edit/licence-edit.component';
+import { DateFilterPipe } from './licence-edit/date-filter.pipe';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { contentReducer } from './ngrx/contentSlice/content.reducer';
+import { licenceReducer } from './ngrx/licenceSlice/licence.reducer';
+
 
 @NgModule({
   declarations: [
@@ -31,12 +40,14 @@ import { MatSelectModule } from '@angular/material/select';
     DashboardComponent,
     ContentDashboardComponent,
     LicenceDashboardComponent,
-    PlatformDashboardComponent,
-    ContentEditComponent
+    ContentEditComponent,
+    LicenceEditComponent,
+    DateFilterPipe
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    MatIconModule,
     NgPipesModule,
     HttpClientModule,
     AppRoutingModule,
@@ -44,10 +55,15 @@ import { MatSelectModule } from '@angular/material/select';
     MatSliderModule,
     MatSelectModule,
     ReactiveFormsModule,
+    MatExpansionModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule,
     StoreModule.forRoot(
       {
         user: userReducer,
-
+        content: contentReducer,
+        licence: licenceReducer
       },
       {
         runtimeChecks:

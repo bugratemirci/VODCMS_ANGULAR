@@ -1,6 +1,6 @@
 export class Licence {
     id: number;
     licenceName: string;
-    licenceStartTime: string;
-    licenceEndTime: string;
+    endTime: Date;
+    startTime: Date;
 }

@@ -15,32 +15,31 @@ export class ContentEditComponent implements OnInit {
   constructor(private licenceService: LicencesService, private contentService: ContentsService) { }
   licences: Licence[]
   status: String[] = ['InProgress', 'Published']
-  selectedLicences = new FormControl(['']);
-  selectedStatus = new FormControl('');
-  contentName: "";
-  contentStatus: "";
-  contentVideoUrl: "";
-  contentPosterUrl: "";
-  contentDescription: "";
+  selectedLicences = new FormControl([]);
+  selectedStatus = new FormControl();
 
+  currentContent: Content
 
   ngOnInit(): void {
     this.licenceService.getAllLicence().subscribe(data => {
       this.licences = data;
     })
+    this.contentService.getCurrentContent().subscribe(data => {
+      this.currentContent = data
+    })
   }
   addContent() {
-
-
     let licenceId = this.selectedLicences.value
 
+    this.currentContent.contentDescription
     let obj = {
       "content": {
-        contentName: this.contentName,
-        contentStatus: this.selectedStatus.value,
-        contentVideoUrl: this.contentVideoUrl,
-        contentPosterUrl: this.contentPosterUrl,
-        contentDescription: this.contentDescription
+        contentName: this.currentContent.contentName,
+        contentDescription: this.currentContent.contentDescription,
+        id: this.currentContent.id,
+        contentPosterUrl: this.currentContent.contentPosterUrl,
+        contentVideoUrl: this.currentContent.contentVideoUrl,
+        contentStatus: this.selectedStatus.value
       },
       "licence": [{}]
     }
@@ -48,10 +47,19 @@ export class ContentEditComponent implements OnInit {
     licenceId?.map(id => {
       obj.licence.push({ id: id })
     })
+    if (!this.currentContent.id || this.currentContent.id == -1) {
+      this.contentService.addToDB(obj.content, obj.licence).subscribe(data => {
+        window.location.reload();
+      });
+    }
+    else {
+      this.contentService.updateDB(obj.content, obj.licence).subscribe(data => {
+        window.location.reload();
+      });
+    }
 
-    this.contentService.addToDB(obj.content, obj.licence).subscribe(data => {
-      console.log(data);
-    });
   }
-
+  resetContent() {
+    this.contentService.resetCurrentContent()
+  }
 }

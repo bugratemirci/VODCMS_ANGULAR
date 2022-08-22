@@ -1,5 +1,5 @@
 <div style="position: relative; color: white;">
-    <table class="table bg-light" style=" color: black; border-radius: 5px;">
+    <table class="table bg-light" style=" color: black; border-radius: 5px; text-align: right">
         <thead>
             <tr>
                 <th scope="col">Id</th>
@@ -14,10 +14,16 @@
                 <th scope="row">{{content.id}}</th>
                 <td>{{content.contentName}}</td>
                 <td>{{content.contentStatus }}</td>
-                <td>{{content.contentPosterUrl | shorten: 50}}...</td>
-                <td>{{content.contentVideoUrl | shorten: 50}}...</td>
-                <td><button class="btn btn-success">Edit</button></td>
-                <td><a class="btn btn-danger" (click)="onDeleteClick(content.id)">Delete</a></td>
+                <td>{{content.contentPosterUrl | shorten: 35}}...</td>
+                <td>{{content.contentVideoUrl | shorten: 35}}...</td>
+                <td>
+                    <button class="btn btn-danger" style="height: 34px; margin-right: 2%;" (click)="onEditClick(content)">
+                        <mat-icon style="font-size: 20px;" fontIcon="edit"></mat-icon>
+                    </button>
+                    <a class="btn bg-dark" style="height: 34px;" (click)="onDeleteClick(content.id)">
+                        <mat-icon style="font-size: 20px; color: white;" fontIcon="delete"></mat-icon>
+                    </a>
+                </td>
             </tr>
         </tbody>
     </table>

@@ -4,7 +4,7 @@ import { ContentsService } from '../services/contents.service';
 @Component({
   selector: 'app-content-dashboard',
   templateUrl: './content-dashboard.component.html',
-  styleUrls: ['./content-dashboard.component.css']
+  styleUrls: ['./content-dashboard.component.css'],
 })
 export class ContentDashboardComponent implements OnInit {
 
@@ -12,13 +12,20 @@ export class ContentDashboardComponent implements OnInit {
   contents: Content[]
   ngOnInit(): void {
     this.contentService.getProducts().subscribe(data => {
-      this.contents = data;
+      this.contents = data
     })
   }
 
   onDeleteClick(id: number) {
     this.contentService.deleteContent(id).subscribe(data => {
       console.log("Silme işlemi başarılı.");
+    })
+  }
+  onEditClick(content: Content) {
+
+    this.contentService.setCurrentContent(content);
+    this.contentService.getCurrentContent().subscribe(data => {
+      console.log(data);
     })
   }
 
