@@ -1,6 +1,6 @@
 const apiConstants = {
     apiPrefix: "api/",
-    apiUrl: "http://localhost:8080/"
+    apiUrl: "https://agile-ravine-93212.herokuapp.com/"
 }
 
 export default apiConstants;
